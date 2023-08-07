@@ -22,7 +22,8 @@
 // const mnemonic = process.env["MNEMONIC"];
 // const infuraProjectId = process.env["INFURA_PROJECT_ID"];
  
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const privateKeys = ["0xcd01a70becd333871f09a01b444ab047958f7567d9d5a1fdc1d8c898174d5b8d"];
 
 module.exports = {
   /**
@@ -53,6 +54,18 @@ module.exports = {
     //   network_id: 5,       // Goerli's id
     //   chain_id: 5
     // }
+    testnet: {
+      provider: () => new HDWalletProvider(privateKeys, `https://data-seed-prebsc-1-s1.binance.org:8545`),
+      network_id: 97,
+      skipDryRun: true
+    },
+    bsc: {
+      provider: () => new HDWalletProvider(privateKeys, `https://bsc-dataseed1.bnbchain.org`),
+      network_id: 56,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
